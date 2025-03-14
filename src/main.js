@@ -1,5 +1,5 @@
 import BookService from "./services/book-service.js";
-
+import { createTextElement } from "./util/ui.js";
 
 const bookService = new BookService();
 // console.log(bookService)
@@ -14,40 +14,31 @@ function displayBooks(books) {
 
     for (let i = 0; i < books.length; i++) {
         const book = books[i];
-
-        const bookContainer = document.createElement('a');
-        bookContainer.classList.add('book-container');
-        bookContainer.href = "./detail.html?id=" + book.id;
-
-        /*  const idContainer = createTextElement('p', book.id) */
-        const titleContainer = createTextElement('h3', book.title)
-        /* const summaryContainer = createTextElement('p', book.summary)
-        const subjectsContainer = createTextElement('p', book.subjects) */
-        const image = document.createElement('img')
-        image.src = book.coverImg
-
-        /*  bookContainer.appendChild(idContainer); */
-        bookContainer.appendChild(titleContainer);
-        /* bookContainer.appendChild(summaryContainer);
-        bookContainer.appendChild(subjectsContainer); */
-        bookContainer.appendChild(image);
-
-
-        container.appendChild(bookContainer)
+        const bookContainer = displayBookSummary(book);
+        container.appendChild(bookContainer);
     }
 }
 
-function createTextElement(elementType, text) {
+function displayBookSummary(book) {
+    const bookContainer = document.createElement('a');
+    bookContainer.classList.add('book-container');
+    bookContainer.href = "./detail.html?id=" + book.id;
 
-    const element = document.createElement(elementType);
+    /*  const idContainer = createTextElement('p', book.id) */
+    const titleContainer = createTextElement('h3', book.title)
+    /* const summaryContainer = createTextElement('p', book.summary)
+    const subjectsContainer = createTextElement('p', book.subjects) */
+    const image = document.createElement('img')
+    image.src = book.coverImg
 
-    const node = document.createTextNode(text);
-
-    element.appendChild(node);
-
-    return element;
-
+    /*  bookContainer.appendChild(idContainer); */
+    bookContainer.appendChild(titleContainer);
+    /* bookContainer.appendChild(summaryContainer);
+    bookContainer.appendChild(subjectsContainer); */
+    bookContainer.appendChild(image);
+    return bookContainer;
 }
+
 
 function orderByName() {
     bookService.getBooksByName().then(books => displayBooks(books));

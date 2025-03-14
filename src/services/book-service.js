@@ -22,18 +22,28 @@ export default class BookService {
 
     }
 
-    /*  getBooKFromId(id){
-         return this.getBooksData()
-         .than(books => {
-             const book = ...
- 
-             return book;
-         });
-     } */
+    getBookFromId(id) {
+        return this.getBooksData()
+            .then(books => {
+                return books.find(book => book.id === id)
+            });
+    }
 
 
     getFromRawDataToBooks(booksData) {
         const books = []
+
+        /*         return booksData.map(data => {
+        
+                    const id = data.id
+                    const title = data.title
+                    const authors = this.createAuthors(data.authors)
+                    const summary = data.summaries[0]
+                    const subjects = data.subjects
+                    const coverImg = data.formats['image/jpeg']
+        
+                    return new Book(id, title, authors, summary, subjects, coverImg)
+                }); */
 
         for (let i = 0; i < booksData.length; i++) {
             const data = booksData[i];
