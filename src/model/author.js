@@ -1,4 +1,4 @@
-class Author {
+export default class Author {
     constructor(name, yob, yod) {
 
         this.name = name;
@@ -24,14 +24,11 @@ class Author {
 }
 
 
-const author1 = new Author("maefd", 1255, 1288);
-console.log(author1)
-console.log(author1.getAge()) //33
-
-const author2 = new Author("pippo", 1980, null);
-console.log(author2)
-console.log(author2.getAge()) //45
-
-const author3 = new Author("pluto", null, null);
-console.log(author3)
-console.log(author3.getAge()) //n/a
+/* const author1 = new Author('pippo', 1950, 2000)
+console.log(author1);
+const author2 = new Author('pluto', 1951, null)
+console.log(author2);
+const authors = [author1, author2]
+const subject = ['giallo', 'epica']
+const book1 = new Book(123, 'iliade', authors, 'ciao', subject, 'http://google.com/img1.jgp');
+console.log(book1); */
